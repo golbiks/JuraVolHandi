@@ -5,13 +5,13 @@ use PHPMailer\PHPMailer\Exception;
 require 'assets/PHPMailer-master/src/Exception.php';
 require 'assets/PHPMailer-master/src/PHPMailer.php';
 require 'assets/PHPMailer-master/src/SMTP.php';
-require 'config.php'; // inclusion de ton fichier de config
+require __DIR__ . '/private/config.php'; // inclusion config sécurisée
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // Config SMTP depuis config.php
+        // Configuration SMTP
         $mail->isSMTP();
         $mail->Host       = SMTP_HOST;
         $mail->SMTPAuth   = true;
@@ -20,17 +20,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->SMTPSecure = SMTP_SECURE;
         $mail->Port       = SMTP_PORT;
 
-        // Expéditeur et destinataire
-        $mail->setFrom(MAIL_FROM, MAIL_FROM_NAME);
-        $mail->addAddress(MAIL_TO);
-
         // Infos du formulaire
         $name = htmlspecialchars($_POST["name"]);
         $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
         $message = htmlspecialchars($_POST["message"]);
         $sendCopy = isset($_POST["copy"]);
 
-        // Sujet & contenu
+        if (empty($name) || empty($email) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            header("Location: index.html#contact?error=1");
+            exit;
+        }
+
+        // Mail principal vers l’asso
+        $mail->setFrom(MAIL_FROM, MAIL_FROM_NAME);
+        $mail->addAddress(MAIL_TO);
+
         $mail->Subject = "Nouveau message du site - $name";
         $mail->Body    = "Nom: $name\nEmail: $email\n\nMessage:\n$message";
 
@@ -56,9 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $copy->send();
         }
 
-        echo "Message envoyé avec succès.";
+        // Succès → redirection
+        header("Location: index.html?success=1");
+        exit;
+
     } catch (Exception $e) {
-        echo "Erreur lors de l'envoi : {$mail->ErrorInfo}";
+        // Erreur → redirection
+        header("Location: index.html?error=1");
+        exit;
     }
 }
 ?>

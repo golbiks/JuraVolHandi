@@ -397,5 +397,65 @@
 					$window.on('load', function() {
 						$main._show(location.hash.substr(1), true);
 					});
+	
+						$(document).ready(function() {
+		var urlParams = new URLSearchParams(window.location.search);
+		var $modal = $('#modal-success');
+		var $closeBtn = $('#modal-close');
 
-})(jQuery);
+		if (urlParams.has("success")) {
+			$modal.fadeIn(300); // Affiche le modal avec animation
+			history.replaceState({}, document.title, "/index.html"); // Supprime le paramètre
+		} else if (urlParams.has("error")) {
+			alert("❌ Erreur lors de l’envoi. Merci de réessayer.");
+			history.replaceState({}, document.title, "/index.html");
+		}
+
+		// Fermer le modal
+		$closeBtn.on('click', function() {
+			$modal.fadeOut(300);
+		});
+
+		// Fermer si clic à l'extérieur du contenu
+		$modal.on('click', function(e) {
+			if ($(e.target).is($modal)) {
+				$modal.fadeOut(300);
+			}
+		});
+	});
+
+	// ------------------------------
+	// Modal de confirmation
+	// ------------------------------
+// ------------------------------
+// Modal de confirmation
+// ------------------------------
+    function showModal() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var $modal = $('#modal-success');
+        var $closeBtn = $('#modal-close');
+
+        if (urlParams.has("success")) {
+            // Forcer l'affichage du modal
+            $modal.css('display','flex'); // pas de fadeIn pour éviter problème d'affichage
+            history.replaceState({}, document.title, "/index.html");
+        } else if (urlParams.has("error")) {
+            alert("❌ Erreur lors de l’envoi. Merci de réessayer.");
+            history.replaceState({}, document.title, "/index.html");
+        }
+
+        $closeBtn.on('click', function() {
+            $modal.fadeOut(300);
+        });
+
+        $modal.on('click', function(e) {
+            if ($(e.target).is($modal)) {
+                $modal.fadeOut(300);
+            }
+        });
+    }
+
+    // Exécuter après que tout le template soit prêt
+    $(window).on('load', showModal);
+})
+(jQuery);

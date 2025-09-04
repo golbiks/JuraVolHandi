@@ -49,18 +49,18 @@
 
 						<!-- Intro -->
 							<article id="intro">
-								<h2 class="major">Intro</h2>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<h2 class="major">Qui sommes-nous ?</h2>
+								<span class="image main"><img src="images/handi.jpg" alt="" /></span>
 								<p>Jura Vol Handi est une association loi 1901, créée en 2025 dans le cadre d’un projet d’étude d’élève moniteur de parapente.
 									L’idée est simple : partager la passion du parapente avec des personnes en situation de handicap, en organisant chaque année un stage spécialement adapté.
 									Notre équipe est composée de moniteurs qualifiés, dont l’un est encadrant de la formation handi pour les futurs moniteurs de parapente et habilité à délivrer les brevets aux biplaceurs associatifs souhaitant pratiquer le vol handi.
-									Autour d’eux, des bénévoles s’investissent pour assurer la logistique, l’accompagnement et le bon déroulement des stages.<a href="#work">awesome work</a>.</p>
+									Autour d’eux, des bénévoles s’investissent pour assurer la logistique, l’accompagnement et le bon déroulement des stages.</p>
 								<p></p>
 							</article>
 
 						<!-- Actions -->
 							<article id="actions">
-								<h2 class="major">Actions</h2>
+								<h2 class="major">Nos actions</h2>
 								<span class="image main"><img src="images/pic_handi_solo.jpg" alt="" /></span>
 								<p>Chaque année, au printemps (avec possibilité de report en automne), nous organisons un stage handi-vol dans le Jura.
 									Pendant plusieurs jours, les participants découvrent le parapente en toute sécurité grâce à :
@@ -79,7 +79,7 @@
 								<h2 class="major">Pourquoi le parapente handi ?</h2>
 								<span class="image main"><img src="images/pic_parapente_handi.jpg" alt="" /></span>
 								<p>Le parapente n’est pas seulement un sport, c’est une expérience de liberté unique.
-									Pour une personne en situation de handicap, voler c’est retrouver une autonomie, dépasser ses limites, vivre un moment intense en sensations et en émotions.	
+									Pour une personne en situation de handicap, voler c’est retrouver son autonomie, dépasser ses limites, vivre un moment intense en sensations et en émotions.	
 								</p>
 								<p>En organisant ce stage, nous voulons :
 									<ul>
@@ -93,10 +93,11 @@
 						<!-- Participer -->
 							<article id="participer">
 								<h2 class="major">Participer</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
+								<span class="image main"><img src="images/handi3.jpg" alt="" /></span>
 								<p>Vous êtes en situation de handicap et souhaitez découvrir le parapente ? Inscrivez-vous pour vivre une expérience inoubliable.</p>
-								<p>Vous êtes moniteur, biplaceur associatif ou bénévole ? Rejoignez notre équipe et aidez-nous à rendre ce projet possible.</p>
+								<p>Vous êtes moniteur(-trice), biplaceur(-euse) associatif ou bénévole ? Rejoignez notre équipe et aidez-nous à rendre ce projet possible.</p>
 								<p>Vous êtes une entreprise, une fondation ou un particulier ? Votre soutien financier ou matériel est essentiel pour financer le matériel adapté et réduire les frais d’inscription des stagiaires.</p>
+								
 							</article>
 
 						<!-- Contact -->
@@ -113,8 +114,8 @@
 											<input type="text" name="email" id="email" />
 										</div>
 										<div class="field half">
-											<input type="checkbox" id="demo-copy" name="demo-copy">
-											<label for="demo-copy">Email me a copy</label>
+											<input type="checkbox" id="copy" name="copy">
+											<label for="copy">Email me a copy</label>
 										</div>
 										<div class="field">
 											<label for="message">Message</label>
@@ -126,11 +127,21 @@
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
-								<ul class="icons">
+								<div id="form-message"></div>
+								<!-- <ul class="icons">
 									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-								</ul>
+								</ul> -->
 							</article>
+
+									<!-- Modal de confirmation stylé -->
+						<div id="modal-success" class="modal" style="display:none;">
+							<div class="modal-content">
+								<h2>✅ Message envoyé !</h2>
+								<p>Merci, votre message a bien été envoyé.</p>
+								<button id="modal-close">Fermer</button>
+							</div>
+						</div>
 
 						<!-- Elements -->
 							<article id="elements">
@@ -378,7 +389,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Louis Cordier. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; Louis Cordier</p>
+						<!-- <p class="copyright">&copy; Louis Cordier. Design: <a href="https://html5up.net">HTML5 UP</a>.</p> -->
 					</footer>
 
 			</div>
@@ -393,5 +405,17 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-	</body>
+		<!-- <script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const urlParams = new URLSearchParams(window.location.search);
+				const formMessage = document.getElementById("form-message");
+			
+				if (urlParams.has("success")) {
+					formMessage.innerHTML = "<p style='color:green;'>✅ Merci, votre message a bien été envoyé !</p>";
+				} else if (urlParams.has("error")) {
+					formMessage.innerHTML = "<p style='color:red;'>❌ Erreur lors de l’envoi. Merci de réessayer.</p>";
+				}
+			});
+		</script>	 -->
+	</body>	
 </html>
