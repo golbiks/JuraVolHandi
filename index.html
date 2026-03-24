@@ -5,167 +5,315 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Jura Vol Handi</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<head>
+	<title>Jura Vol Handi</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<style>
+		/* Hide the auto-generated nav divider line (mis-positioned with 6 nav items) */
+		#header nav.use-middle li.is-middle::before {
+			display: none;
+		}
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo" style="display: flex; align-items: center; justify-content: center;">
-							<!-- 
+		/* Photo Gallery */
+		.photo-gallery {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+			gap: 10px;
+			margin-top: 1em;
+		}
+
+		.photo-gallery .photo-thumb {
+			position: relative;
+			overflow: hidden;
+			border-radius: 6px;
+			cursor: pointer;
+			aspect-ratio: 1 / 1;
+			background: rgba(255, 255, 255, 0.05);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.photo-gallery .photo-thumb:hover {
+			transform: scale(1.04);
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+		}
+
+		.photo-gallery .photo-thumb img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			transition: opacity 0.3s ease;
+		}
+
+		.photo-gallery .photo-thumb img:hover {
+			opacity: 0.85;
+		}
+
+		.photo-empty {
+			text-align: center;
+			padding: 2em 0;
+			opacity: 0.6;
+			font-style: italic;
+		}
+
+		/* Lightbox */
+		#lightbox {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.92);
+			z-index: 9999;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+
+		#lightbox.active {
+			display: flex;
+		}
+
+		#lightbox img {
+			max-width: 92vw;
+			max-height: 88vh;
+			object-fit: contain;
+			border-radius: 4px;
+			box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+			cursor: default;
+		}
+
+		#lightbox-close {
+			position: absolute;
+			top: 18px;
+			right: 24px;
+			font-size: 2rem;
+			color: #fff;
+			cursor: pointer;
+			line-height: 1;
+			opacity: 0.8;
+			transition: opacity 0.2s;
+		}
+
+		#lightbox-close:hover {
+			opacity: 1;
+		}
+
+		#lightbox-prev,
+		#lightbox-next {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 2.2rem;
+			color: #fff;
+			cursor: pointer;
+			opacity: 0.7;
+			transition: opacity 0.2s;
+			user-select: none;
+			padding: 0 16px;
+		}
+
+		#lightbox-prev {
+			left: 10px;
+		}
+
+		#lightbox-next {
+			right: 10px;
+		}
+
+		#lightbox-prev:hover,
+		#lightbox-next:hover {
+			opacity: 1;
+		}
+	</style>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="logo" style="display: flex; align-items: center; justify-content: center;">
+				<!-- 
 								Add padding inside the circle to prevent the logo from touching the edge.
 								You can adjust the padding value as needed.
 							-->
-							<img src="images/logo_blanc.png" alt="Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; padding: 6%; box-sizing: border-box;" />
+				<img src="images/logo_blanc.png" alt="Logo"
+					style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; padding: 6%; box-sizing: border-box;" />
+			</div>
+			<div class="content">
+				<div class="inner">
+					<h1>Jura Vol Handi</h1>
+					<p>Le ciel est pour tout le monde<br>Volez en solo, même en situation de handicap</p>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#intro">Qui sommes-nous ?</a></li>
+					<li><a href="#actions">Nos actions</a></li>
+					<li><a href="#parapente-handi">Pourquoi le parapente handi ?</a></li>
+					<li><a href="#participer">Participer</a></li>
+					<li><a href="#photos">Photos</a></li>
+					<li><a href="#contact">Contactez-nous</a></li>
+					<!--<li><a href="#elements">Elements</a></li>-->
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Intro -->
+			<article id="intro">
+				<h2 class="major">Qui sommes-nous ?</h2>
+				<span class="image main"><img src="images/handi.jpg" alt="" /></span>
+				<p>Jura Vol Handi est une association loi 1901, créée en 2025 dans le cadre d’un projet d’étude d’élève
+					moniteur de parapente.
+					L’idée est simple : partager la passion du parapente avec des personnes en situation de handicap, en
+					organisant chaque année un stage spécialement adapté.
+					Notre équipe est composée de moniteurs qualifiés, dont l’un est encadrant de la formation handi pour
+					les futurs moniteurs de parapente et habilité à délivrer les brevets aux biplaceurs associatifs
+					souhaitant pratiquer le vol handi.
+					Autour d’eux, des bénévoles s’investissent pour assurer la logistique, l’accompagnement et le bon
+					déroulement des stages.</p>
+				<p></p>
+			</article>
+
+			<!-- Actions -->
+			<article id="actions">
+				<h2 class="major">Nos actions</h2>
+				<span class="image main"><img src="images/pic_handi_solo.jpg" alt="" /></span>
+				<p>Chaque année, au printemps (avec possibilité de report en automne), nous organisons un stage
+					handi-vol dans le Jura.
+					Pendant plusieurs jours, les participants découvrent le parapente en toute sécurité grâce à :
+				<ul>
+					<li>des moniteurs expérimentés et formés spécifiquement au handi-vol</li>
+					<li>du matériel adapté (sellettes, fauteuils)</li>
+					<li>des bénévoles pour les gonflages et décollages</li>
+				</ul>
+				Au-delà des vols, ce stage est aussi un moment de rencontre, de partage et d’émotion.
+				Les fonds récoltés auprès des partenaires et mécènes permettent de réduire le coût de participation pour
+				les stagiaires, afin que l’argent ne soit pas un frein à l’aventure.</p>
+				<p></p>
+			</article>
+
+			<!-- parapente-handi -->
+			<article id="parapente-handi">
+				<h2 class="major">Pourquoi le parapente handi ?</h2>
+				<span class="image main"><img src="images/pic_parapente_handi.jpg" alt="" /></span>
+				<p>Le parapente n’est pas seulement un sport, c’est une expérience de liberté unique.
+					Pour une personne en situation de handicap, voler c’est retrouver son autonomie, dépasser ses
+					limites, vivre un moment intense en sensations et en émotions.
+				</p>
+				<p>En organisant ce stage, nous voulons :
+				<ul>
+					<li>favoriser l’accès au sport et à la nature</li>
+					<li>promouvoir l’inclusion par le sport</li>
+					<li>sensibiliser le grand public au handicap et à ses richesses</li>
+				</ul>
+				</p>
+			</article>
+
+			<!-- Participer -->
+			<article id="participer">
+				<h2 class="major">Participer</h2>
+				<span class="image main"><img src="images/handi3.jpg" alt="" /></span>
+				<p>Vous êtes en situation de handicap et souhaitez découvrir le parapente ? Inscrivez-vous pour vivre
+					une expérience inoubliable.</p>
+				<p>Vous êtes moniteur(-trice), biplaceur(-euse) associatif ou bénévole ? Rejoignez notre équipe et
+					aidez-nous à rendre ce projet possible.</p>
+				<p>Vous êtes une entreprise, une fondation ou un particulier ? Votre soutien financier ou matériel est
+					essentiel pour financer le matériel adapté et réduire les frais d’inscription des stagiaires.</p>
+				<p>Aidez-nous à adapter notre offre en remplissant ce questionnaire :</p>
+				<!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXwcwTy6YzzOpss_fM4KZXRCkWTRJwqy2FofK7H1viS89vrA/viewform?usp=sharing&ouid=114742655167564152354" class="button primary icon solid fa-bar-chart">Icon</a> -->
+				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdXwcwTy6YzzOpss_fM4KZXRCkWTRJwqy2FofK7H1viS89vrA/viewform?usp=sharing&ouid=114742655167564152354"
+					class="button primary">Questionaire en ligne</a>
+
+			</article>
+
+			<!-- Photos -->
+			<article id="photos">
+				<h2 class="major">Photos</h2>
+				<div id="photo-gallery" class="photo-gallery"></div>
+				<p id="photo-empty" class="photo-empty" style="display:none;">Aucune photo pour le moment. Revenez
+					bientôt !</p>
+			</article>
+
+			<!-- Contact -->
+			<article id="contact">
+				<h2 class="major">Contactez-nous</h2>
+				<form method="post" action="contact.php">
+					<div class="fields">
+						<div class="field half">
+							<label for="name">Nom</label>
+							<input type="text" name="name" id="name" />
 						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>Jura Vol Handi</h1>
-								<p>Le ciel est pour tout le monde<br>Volez en solo, même en situation de handicap</p>
-							</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="text" name="email" id="email" />
 						</div>
-						<nav>
-							<ul>
-								<li><a href="#intro">Qui sommes-nous ?</a></li>
-								<li><a href="#actions">Nos actions</a></li>
-								<li><a href="#parapente-handi">Pourquoi le parapente handi ?</a></li>
-								<li><a href="#participer">Participer</a></li>
-								<li><a href="#contact">Contactez-nous</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
-							</ul>
-						</nav>
-					</header>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Intro -->
-							<article id="intro">
-								<h2 class="major">Qui sommes-nous ?</h2>
-								<span class="image main"><img src="images/handi.jpg" alt="" /></span>
-								<p>Jura Vol Handi est une association loi 1901, créée en 2025 dans le cadre d’un projet d’étude d’élève moniteur de parapente.
-									L’idée est simple : partager la passion du parapente avec des personnes en situation de handicap, en organisant chaque année un stage spécialement adapté.
-									Notre équipe est composée de moniteurs qualifiés, dont l’un est encadrant de la formation handi pour les futurs moniteurs de parapente et habilité à délivrer les brevets aux biplaceurs associatifs souhaitant pratiquer le vol handi.
-									Autour d’eux, des bénévoles s’investissent pour assurer la logistique, l’accompagnement et le bon déroulement des stages.</p>
-								<p></p>
-							</article>
-
-						<!-- Actions -->
-							<article id="actions">
-								<h2 class="major">Nos actions</h2>
-								<span class="image main"><img src="images/pic_handi_solo.jpg" alt="" /></span>
-								<p>Chaque année, au printemps (avec possibilité de report en automne), nous organisons un stage handi-vol dans le Jura.
-									Pendant plusieurs jours, les participants découvrent le parapente en toute sécurité grâce à :
-									<ul>
-										<li>des moniteurs expérimentés et formés spécifiquement au handi-vol</li>
-										<li>du matériel adapté (sellettes, fauteuils)</li>
-										<li>des bénévoles pour les gonflages et décollages</li>
-									</ul>
-									Au-delà des vols, ce stage est aussi un moment de rencontre, de partage et d’émotion.
-									Les fonds récoltés auprès des partenaires et mécènes permettent de réduire le coût de participation pour les stagiaires, afin que l’argent ne soit pas un frein à l’aventure.</p>
-								<p></p>
-							</article>
-
-						<!-- parapente-handi -->
-							<article id="parapente-handi">
-								<h2 class="major">Pourquoi le parapente handi ?</h2>
-								<span class="image main"><img src="images/pic_parapente_handi.jpg" alt="" /></span>
-								<p>Le parapente n’est pas seulement un sport, c’est une expérience de liberté unique.
-									Pour une personne en situation de handicap, voler c’est retrouver son autonomie, dépasser ses limites, vivre un moment intense en sensations et en émotions.	
-								</p>
-								<p>En organisant ce stage, nous voulons :
-									<ul>
-										<li>favoriser l’accès au sport et à la nature</li>
-										<li>promouvoir l’inclusion par le sport</li>
-										<li>sensibiliser le grand public au handicap et à ses richesses</li>
-									</ul>
-								</p>
-							</article>
-
-						<!-- Participer -->
-							<article id="participer">
-								<h2 class="major">Participer</h2>
-								<span class="image main"><img src="images/handi3.jpg" alt="" /></span>
-								<p>Vous êtes en situation de handicap et souhaitez découvrir le parapente ? Inscrivez-vous pour vivre une expérience inoubliable.</p>
-								<p>Vous êtes moniteur(-trice), biplaceur(-euse) associatif ou bénévole ? Rejoignez notre équipe et aidez-nous à rendre ce projet possible.</p>
-								<p>Vous êtes une entreprise, une fondation ou un particulier ? Votre soutien financier ou matériel est essentiel pour financer le matériel adapté et réduire les frais d’inscription des stagiaires.</p>
-								<p>Aidez-nous à adapter notre offre en remplissant ce questionnaire :</p>
-								<!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXwcwTy6YzzOpss_fM4KZXRCkWTRJwqy2FofK7H1viS89vrA/viewform?usp=sharing&ouid=114742655167564152354" class="button primary icon solid fa-bar-chart">Icon</a> -->
-								<a href="https://docs.google.com/forms/d/e/1FAIpQLSdXwcwTy6YzzOpss_fM4KZXRCkWTRJwqy2FofK7H1viS89vrA/viewform?usp=sharing&ouid=114742655167564152354" class="button primary">Questionaire en ligne</a>
-								
-							</article>
-
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contactez-nous</h2>
-								<form method="post" action="contact.php">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Nom</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field half">
-											<input type="checkbox" id="copy" name="copy">
-											<label for="copy">Email me a copy</label>
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form>
-								<div id="form-message"></div>
-								<!-- <ul class="icons">
+						<div class="field half">
+							<input type="checkbox" id="copy" name="copy">
+							<label for="copy">Email me a copy</label>
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="4"></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input type="submit" value="Send Message" class="primary" /></li>
+						<li><input type="reset" value="Reset" /></li>
+					</ul>
+				</form>
+				<div id="form-message"></div>
+				<!-- <ul class="icons">
 									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 								</ul> -->
-							</article>
+			</article>
 
-									<!-- Modal de confirmation stylé -->
-						<div id="modal-success" class="modal" style="display:none;">
-							<div class="modal-content">
-								<h2>✅ Message envoyé !</h2>
-								<p>Merci, votre message a bien été envoyé.</p>
-								<button id="modal-close">Fermer</button>
-							</div>
-						</div>
+			<!-- Modal de confirmation stylé -->
+			<div id="modal-success" class="modal" style="display:none;">
+				<div class="modal-content">
+					<h2>✅ Message envoyé !</h2>
+					<p>Merci, votre message a bien été envoyé.</p>
+					<button id="modal-close">Fermer</button>
+				</div>
+			</div>
 
-						<!-- Elements -->
-							<article id="elements">
-								<h2 class="major">Elements</h2>
+			<!-- Elements -->
+			<article id="elements">
+				<h2 class="major">Elements</h2>
 
-								<section>
-									<h3 class="major">Text</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h4>Blockquote</h4>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h4>Preformatted</h4>
-									<pre><code>i = 0;
+				<section>
+					<h3 class="major">Text</h3>
+					<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is
+						<em>emphasized</em>.
+						This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+						This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a
+							href="#">this is a link</a>.
+					</p>
+					<hr />
+					<h2>Heading Level 2</h2>
+					<h3>Heading Level 3</h3>
+					<h4>Heading Level 4</h4>
+					<h5>Heading Level 5</h5>
+					<h6>Heading Level 6</h6>
+					<hr />
+					<h4>Blockquote</h4>
+					<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus
+						euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis
+						iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem
+						ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+					<h4>Preformatted</h4>
+					<pre><code>i = 0;
 
 while (!deck.isInOrder()) {
     print 'Iteration ' + i;
@@ -174,241 +322,388 @@ while (!deck.isInOrder()) {
 }
 
 print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-								</section>
+				</section>
 
-								<section>
-									<h3 class="major">Lists</h3>
+				<section>
+					<h3 class="major">Lists</h3>
 
-									<h4>Unordered</h4>
-									<ul>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
+					<h4>Unordered</h4>
+					<ul>
+						<li>Dolor pulvinar etiam.</li>
+						<li>Sagittis adipiscing.</li>
+						<li>Felis enim feugiat.</li>
+					</ul>
 
-									<h4>Alternate</h4>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
+					<h4>Alternate</h4>
+					<ul class="alt">
+						<li>Dolor pulvinar etiam.</li>
+						<li>Sagittis adipiscing.</li>
+						<li>Felis enim feugiat.</li>
+					</ul>
 
-									<h4>Ordered</h4>
-									<ol>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis viverra.</li>
-										<li>Felis enim feugiat.</li>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis lorem.</li>
-										<li>Felis enim et feugiat.</li>
-									</ol>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
+					<h4>Ordered</h4>
+					<ol>
+						<li>Dolor pulvinar etiam.</li>
+						<li>Etiam vel felis viverra.</li>
+						<li>Felis enim feugiat.</li>
+						<li>Dolor pulvinar etiam.</li>
+						<li>Etiam vel felis lorem.</li>
+						<li>Felis enim et feugiat.</li>
+					</ol>
+					<h4>Icons</h4>
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					</ul>
 
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</section>
+					<h4>Actions</h4>
+					<ul class="actions">
+						<li><a href="#" class="button primary">Default</a></li>
+						<li><a href="#" class="button">Default</a></li>
+					</ul>
+					<ul class="actions stacked">
+						<li><a href="#" class="button primary">Default</a></li>
+						<li><a href="#" class="button">Default</a></li>
+					</ul>
+				</section>
 
-								<section>
-									<h3 class="major">Table</h3>
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
-
-								<section>
-									<h3 class="major">Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Primary</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button primary disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Form</h3>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-											</div>
-											<div class="field half">
-												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-											</div>
-											<div class="field">
-												<label for="demo-category">Category</label>
-												<select name="demo-category" id="demo-category">
-													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="field">
-												<label for="demo-message">Message</label>
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</section>
-
-							</article>
-
+				<section>
+					<h3 class="major">Table</h3>
+					<h4>Default</h4>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Item One</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item Two</td>
+									<td>Vis ac commodo adipiscing arcu aliquet.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item Three</td>
+									<td> Morbi faucibus arcu accumsan lorem.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item Four</td>
+									<td>Vitae integer tempus condimentum.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item Five</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="2"></td>
+									<td>100.00</td>
+								</tr>
+							</tfoot>
+						</table>
 					</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Louis Cordier</p>
-						<!-- <p class="copyright">&copy; Louis Cordier. Design: <a href="https://html5up.net">HTML5 UP</a>.</p> -->
-					</footer>
+					<h4>Alternate</h4>
+					<div class="table-wrapper">
+						<table class="alt">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Item One</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item Two</td>
+									<td>Vis ac commodo adipiscing arcu aliquet.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item Three</td>
+									<td> Morbi faucibus arcu accumsan lorem.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item Four</td>
+									<td>Vitae integer tempus condimentum.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item Five</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="2"></td>
+									<td>100.00</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</section>
 
-			</div>
+				<section>
+					<h3 class="major">Buttons</h3>
+					<ul class="actions">
+						<li><a href="#" class="button primary">Primary</a></li>
+						<li><a href="#" class="button">Default</a></li>
+					</ul>
+					<ul class="actions">
+						<li><a href="#" class="button">Default</a></li>
+						<li><a href="#" class="button small">Small</a></li>
+					</ul>
+					<ul class="actions">
+						<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+						<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+					</ul>
+					<ul class="actions">
+						<li><span class="button primary disabled">Disabled</span></li>
+						<li><span class="button disabled">Disabled</span></li>
+					</ul>
+				</section>
 
-		<!-- BG -->
-			<div id="bg"></div>
+				<section>
+					<h3 class="major">Form</h3>
+					<form method="post" action="#">
+						<div class="fields">
+							<div class="field half">
+								<label for="demo-name">Name</label>
+								<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+							</div>
+							<div class="field half">
+								<label for="demo-email">Email</label>
+								<input type="email" name="demo-email" id="demo-email" value=""
+									placeholder="jane@untitled.tld" />
+							</div>
+							<div class="field">
+								<label for="demo-category">Category</label>
+								<select name="demo-category" id="demo-category">
+									<option value="">-</option>
+									<option value="1">Manufacturing</option>
+									<option value="1">Shipping</option>
+									<option value="1">Administration</option>
+									<option value="1">Human Resources</option>
+								</select>
+							</div>
+							<div class="field half">
+								<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+								<label for="demo-priority-low">Low</label>
+							</div>
+							<div class="field half">
+								<input type="radio" id="demo-priority-high" name="demo-priority">
+								<label for="demo-priority-high">High</label>
+							</div>
+							<div class="field half">
+								<input type="checkbox" id="demo-copy" name="demo-copy">
+								<label for="demo-copy">Email me a copy</label>
+							</div>
+							<div class="field half">
+								<input type="checkbox" id="demo-human" name="demo-human" checked>
+								<label for="demo-human">Not a robot</label>
+							</div>
+							<div class="field">
+								<label for="demo-message">Message</label>
+								<textarea name="demo-message" id="demo-message" placeholder="Enter your message"
+									rows="6"></textarea>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Send Message" class="primary" /></li>
+							<li><input type="reset" value="Reset" /></li>
+						</ul>
+					</form>
+				</section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			</article>
 
-		<!-- <script>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; Louis Cordier</p>
+			<!-- <p class="copyright">&copy; Louis Cordier. Design: <a href="https://html5up.net">HTML5 UP</a>.</p> -->
+		</footer>
+
+	</div>
+
+	<!-- Lightbox -->
+	<div id="lightbox">
+		<span id="lightbox-close">&times;</span>
+		<span id="lightbox-prev">&#8249;</span>
+		<img id="lightbox-img" src="" alt="" />
+		<video id="lightbox-video" controls muted controlsList="novolume"
+			style="display:none;max-width:92vw;max-height:88vh;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,0.8);"></video>
+		<span id="lightbox-next">&#8250;</span>
+	</div>
+
+	<!-- BG -->
+	<div id="bg"></div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<!-- Photo Gallery Script -->
+	<script>
+		// ==================================================
+		// MÉDIAS — ajoutez ici les noms de fichiers de /photos/
+		// ==================================================
+		var mediaFiles = [
+			// Photos
+			{ type: 'image', file: 'WhatsApp Image 2026-03-09 at 21.26.02 (1).jpeg' },
+			{ type: 'image', file: 'WhatsApp Image 2026-03-09 at 21.26.02 (2).jpeg' },
+			{ type: 'image', file: 'WhatsApp Image 2026-03-09 at 21.26.02 (3).jpeg' },
+			{ type: 'image', file: 'WhatsApp Image 2026-03-09 at 21.26.03.jpeg' },
+			{ type: 'image', file: 'WhatsApp Image 2026-03-09 at 21.26.04.jpeg' },
+			{ type: 'image', file: 'WhatsApp Image 2026-03-09 at 21.26.05 (2).jpeg' },
+			// Vidéos
+			{ type: 'video', file: 'WhatsApp Video 2026-03-09 at 21.26.00.mp4' },
+			{ type: 'video', file: 'WhatsApp Video 2026-03-09 at 21.26.02 (1).mp4' }
+		];
+		// ==================================================
+
+		(function () {
+			var gallery = document.getElementById('photo-gallery');
+			var empty = document.getElementById('photo-empty');
+			var lightbox = document.getElementById('lightbox');
+			var lbImg = document.getElementById('lightbox-img');
+			var lbVideo = document.getElementById('lightbox-video');
+			var lbClose = document.getElementById('lightbox-close');
+			var lbPrev = document.getElementById('lightbox-prev');
+			var lbNext = document.getElementById('lightbox-next');
+			var currentIndex = 0;
+
+			if (!mediaFiles || mediaFiles.length === 0) {
+				empty.style.display = 'block';
+				return;
+			}
+
+			// Build thumbnails
+			mediaFiles.forEach(function (media, index) {
+				var thumb = document.createElement('div');
+				thumb.className = 'photo-thumb';
+
+				if (media.type === 'video') {
+					// Video thumbnail: use a video element with first frame + play overlay
+					var vid = document.createElement('video');
+					vid.src = 'photos/' + encodeURIComponent(media.file);
+					vid.preload = 'metadata';
+					vid.muted = true;
+					vid.style.width = '100%';
+					vid.style.height = '100%';
+					vid.style.objectFit = 'cover';
+					vid.style.display = 'block';
+					// Seek to 0.5s to get a real frame as poster
+					vid.addEventListener('loadedmetadata', function () { vid.currentTime = 0.5; });
+
+					var overlay = document.createElement('div');
+					overlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);';
+					overlay.innerHTML = '<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.85)"/><polygon points="17,13 35,22 17,31" fill="#222"/></svg>';
+
+					thumb.appendChild(vid);
+					thumb.appendChild(overlay);
+				} else {
+					var img = document.createElement('img');
+					img.src = 'photos/' + encodeURIComponent(media.file);
+					img.alt = media.file;
+					img.loading = 'lazy';
+					thumb.appendChild(img);
+				}
+
+				thumb.addEventListener('click', function () { openLightbox(index); });
+				gallery.appendChild(thumb);
+			});
+
+			// Lightbox functions
+			function openLightbox(index) {
+				currentIndex = index;
+				showMedia(index);
+				lightbox.classList.add('active');
+			}
+
+			function showMedia(index) {
+				var media = mediaFiles[index];
+				var src = 'photos/' + encodeURIComponent(media.file);
+
+				if (media.type === 'video') {
+					lbImg.style.display = 'none';
+					lbVideo.style.display = 'block';
+					lbVideo.src = src;
+					lbVideo.load();
+					lbVideo.muted = true;
+					lbVideo.play();
+				} else {
+					lbVideo.pause();
+					lbVideo.src = '';
+					lbVideo.style.display = 'none';
+					lbImg.style.display = 'block';
+					lbImg.src = src;
+				}
+			}
+
+			function closeLightbox() {
+				lbVideo.pause();
+				lbVideo.src = '';
+				lbVideo.style.display = 'none';
+				lbImg.src = '';
+				lbImg.style.display = 'block';
+				lightbox.classList.remove('active');
+			}
+
+			function showPrev() {
+				currentIndex = (currentIndex - 1 + mediaFiles.length) % mediaFiles.length;
+				showMedia(currentIndex);
+			}
+			function showNext() {
+				currentIndex = (currentIndex + 1) % mediaFiles.length;
+				showMedia(currentIndex);
+			}
+
+			lbClose.addEventListener('click', closeLightbox);
+			lbPrev.addEventListener('click', function (e) { e.stopPropagation(); showPrev(); });
+			lbNext.addEventListener('click', function (e) { e.stopPropagation(); showNext(); });
+			lightbox.addEventListener('click', closeLightbox);
+
+			// Prevent click on media from closing lightbox
+			lbImg.addEventListener('click', function (e) { e.stopPropagation(); });
+			lbVideo.addEventListener('click', function (e) { e.stopPropagation(); });
+
+			// Keyboard navigation
+			document.addEventListener('keydown', function (e) {
+				if (!lightbox.classList.contains('active')) return;
+				if (e.key === 'ArrowLeft') showPrev();
+				if (e.key === 'ArrowRight') showNext();
+				if (e.key === 'Escape') closeLightbox();
+			});
+		})();
+	</script>
+
+	<!-- <script>
 			document.addEventListener("DOMContentLoaded", function() {
 				const urlParams = new URLSearchParams(window.location.search);
 				const formMessage = document.getElementById("form-message");
@@ -420,5 +715,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				}
 			});
 		</script>	 -->
-	</body>	
+</body>
+
 </html>

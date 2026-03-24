@@ -20,6 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->SMTPSecure = SMTP_SECURE;
         $mail->Port       = SMTP_PORT;
 
+        // ✅ Forcer UTF-8
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
+
         // Infos du formulaire
         $name = htmlspecialchars($_POST["name"]);
         $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
@@ -50,6 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $copy->Password   = SMTP_PASS;
             $copy->SMTPSecure = SMTP_SECURE;
             $copy->Port       = SMTP_PORT;
+
+                   // ✅ Forcer UTF-8
+            $copy->CharSet = 'UTF-8';
+            $copy->Encoding = 'base64';
 
             $copy->setFrom(MAIL_FROM, MAIL_FROM_NAME);
             $copy->addAddress($email);
